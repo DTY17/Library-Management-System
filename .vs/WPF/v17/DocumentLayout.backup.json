@@ -1,0 +1,83 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\DotNet\\WPF\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{34643E09-97EA-40C6-A3BE-AC1CFA305ED7}|WPF\\WPF.csproj|d:\\projects\\dotnet\\wpf\\wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{34643E09-97EA-40C6-A3BE-AC1CFA305ED7}|WPF\\WPF.csproj|solutionrelative:wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34643E09-97EA-40C6-A3BE-AC1CFA305ED7}|WPF\\WPF.csproj|d:\\projects\\dotnet\\wpf\\wpf\\user control\\auth\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{34643E09-97EA-40C6-A3BE-AC1CFA305ED7}|WPF\\WPF.csproj|solutionrelative:wpf\\user control\\auth\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34643E09-97EA-40C6-A3BE-AC1CFA305ED7}|WPF\\WPF.csproj|d:\\projects\\dotnet\\wpf\\wpf\\user control\\auth\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34643E09-97EA-40C6-A3BE-AC1CFA305ED7}|WPF\\WPF.csproj|solutionrelative:wpf\\user control\\auth\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\DTY\\AppData\\Local\\Temp\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 164,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.xaml",
+              "DocumentMoniker": "D:\\Projects\\DotNet\\WPF\\WPF\\App.xaml",
+              "RelativeDocumentMoniker": "WPF\\App.xaml",
+              "ToolTip": "D:\\Projects\\DotNet\\WPF\\WPF\\App.xaml",
+              "RelativeToolTip": "WPF\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-26T18:42:14.487Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ResourcePart.cs",
+              "DocumentMoniker": "C:\\Users\\DTY\\AppData\\Local\\Temp\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs",
+              "ToolTip": "C:\\Users\\DTY\\AppData\\Local\\Temp\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs [Read Only]",
+              "ViewState": "AgIAABsAAAAAAAAAAAAjwCAAAAAXAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-26T18:40:47.097Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Login.xaml.cs",
+              "DocumentMoniker": "D:\\Projects\\DotNet\\WPF\\WPF\\User Control\\Auth\\Login.xaml.cs",
+              "RelativeDocumentMoniker": "WPF\\User Control\\Auth\\Login.xaml.cs",
+              "ToolTip": "D:\\Projects\\DotNet\\WPF\\WPF\\User Control\\Auth\\Login.xaml.cs",
+              "RelativeToolTip": "WPF\\User Control\\Auth\\Login.xaml.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAawCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-26T18:39:33.337Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Login.xaml",
+              "DocumentMoniker": "D:\\Projects\\DotNet\\WPF\\WPF\\User Control\\Auth\\Login.xaml",
+              "RelativeDocumentMoniker": "WPF\\User Control\\Auth\\Login.xaml",
+              "ToolTip": "D:\\Projects\\DotNet\\WPF\\WPF\\User Control\\Auth\\Login.xaml",
+              "RelativeToolTip": "WPF\\User Control\\Auth\\Login.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-26T18:34:42.113Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

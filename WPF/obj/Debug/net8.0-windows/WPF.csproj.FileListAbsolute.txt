@@ -1,0 +1,47 @@
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\WPF.exe
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\WPF.deps.json
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\WPF.runtimeconfig.json
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\WPF.dll
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\WPF.pdb
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\MainWindow.g.cs
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\App.g.cs
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF_MarkupCompile.cache
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF_MarkupCompile.lref
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\MainWindow.baml
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF.g.resources
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF.AssemblyInfoInputs.cache
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF.AssemblyInfo.cs
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF.csproj.CoreCompileInputs.cache
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF.dll
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\refint\WPF.dll
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF.pdb
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF.genruntimeconfig.cache
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\ref\WPF.dll
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\User Control\Home.g.cs
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\User Control\Home.baml
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\User Control\Books.g.cs
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\User Control\Member.g.cs
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\User Control\Reccords.g.cs
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\User Control\Settings.g.cs
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\User Control\Books.baml
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\User Control\Member.baml
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\User Control\Reccords.baml
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\User Control\Settings.baml
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\BouncyCastle.Cryptography.dll
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\Google.Protobuf.dll
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\K4os.Compression.LZ4.dll
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\K4os.Compression.LZ4.Streams.dll
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\K4os.Hash.xxHash.dll
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\MySql.Data.dll
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\System.IO.Pipelines.dll
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\ZstdSharp.dll
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\runtimes\win-x64\native\comerr64.dll
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\runtimes\win-x64\native\gssapi64.dll
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\runtimes\win-x64\native\k5sprt64.dll
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\runtimes\win-x64\native\krb5_64.dll
+D:\Projects\DotNet\WPF\WPF\bin\Debug\net8.0-windows\runtimes\win-x64\native\krbcc64.dll
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF.csproj.AssemblyReference.cache
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF.csproj.Up2Date
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\User Control\Auth\Login.g.cs
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\User Control\Auth\Login.baml
