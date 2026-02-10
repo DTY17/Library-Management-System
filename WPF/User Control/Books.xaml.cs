@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WPF.Dto;
 using WPF.Model;
 
@@ -21,6 +12,7 @@ namespace WPF.User_Control
     {
         private BookModel bookModel;
         private int Id = 0;
+
         public Books()
         {
             bookModel = new BookModel();
@@ -30,16 +22,22 @@ namespace WPF.User_Control
 
         private void AddBookBtn_Click(object sender, RoutedEventArgs e)
         {
-            SaveData();
-            LoadData();
-            ClearData();
+            if (ValidateInputs())
+            {
+                SaveData();
+                LoadData();
+                ClearData();
+            }
         }
 
         private void UpdateBookBtn_Click(object sender, RoutedEventArgs e)
         {
-            UpdateData();
-            ClearData();
-            LoadData();
+            if (ValidateInputs())
+            {
+                UpdateData();
+                ClearData();
+                LoadData();
+            }
         }
 
         private void DeleteBookBtn_Click(object sender, RoutedEventArgs e)
@@ -48,6 +46,7 @@ namespace WPF.User_Control
             ClearData();
             LoadData();
         }
+
         private void CancelBookBtn_Click(object sender, RoutedEventArgs e)
         {
             ClearData();
@@ -66,11 +65,11 @@ namespace WPF.User_Control
             if (row != null)
             {
                 var item = row.Item as BookDto;
-                Id = Convert.ToInt32( item?.Id );
+                Id = Convert.ToInt32(item?.Id);
                 BookBookInput.Text = item?.Book;
                 BookAuhtorInput.Text = item?.Author;
                 BookGenreInput.Text = item?.Genre;
-                BookAvailableInput.Text = item?.Available;
+                BookAvailableInput.Text = item?.Available.ToString();
             }
         }
 
@@ -95,6 +94,41 @@ namespace WPF.User_Control
             CancelBookBtn.IsEnabled = false;
         }
 
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrWhiteSpace(BookBookInput.Text))
+            {
+                MessageBox.Show("Book name is required.");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(BookAuhtorInput.Text))
+            {
+                MessageBox.Show("Author name is required.");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(BookGenreInput.Text))
+            {
+                MessageBox.Show("Genre is required.");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(BookAvailableInput.Text))
+            {
+                MessageBox.Show("Availability must be specified (e.g., 0 or 1).");
+                return false;
+            }
+
+            if (!int.TryParse(BookAvailableInput.Text, out _))
+            {
+                MessageBox.Show("Availability must be a number.");
+                return false;
+            }
+
+            return true;
+        }
+
         private void SaveData()
         {
             var isSaved = bookModel.saveData(new BookDto
@@ -105,9 +139,7 @@ namespace WPF.User_Control
                 Available = BookAvailableInput.Text
             });
 
-            if (isSaved) MessageBox.Show("Saved Successfully");
-            else MessageBox.Show("Failed to save data");
- 
+            MessageBox.Show(isSaved ? "Saved Successfully" : "Failed to save data");
         }
 
         private void UpdateData()
@@ -119,22 +151,19 @@ namespace WPF.User_Control
                 Author = BookAuhtorInput.Text,
                 Genre = BookGenreInput.Text,
                 Available = BookAvailableInput.Text
-
             });
 
-            if (isUpdate) MessageBox.Show("Updated Successfully");
-            else MessageBox.Show("Failed to update data");
+            MessageBox.Show(isUpdate ? "Updated Successfully" : "Failed to update data");
         }
 
         private void DeleteData()
         {
-            var isUpdate = bookModel.deleteData(new BookDto
+            var isDeleted = bookModel.deleteData(new BookDto
             {
-                Id = this.Id.ToString()
+                Id = this.Id.ToString(),
             });
 
-            if (isUpdate) MessageBox.Show("Delete Successfully");
-            else MessageBox.Show("Failed to delete data");
+            MessageBox.Show(isDeleted ? "Deleted Successfully" : "Failed to delete data");
         }
     }
 }

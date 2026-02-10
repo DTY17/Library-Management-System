@@ -82,7 +82,7 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             Margin="0,0,25,0">
-                    <Border Background="#5558E3"
+                    <Border x:Name="UserRole" Background="#5558E3"
                             CornerRadius="8"
                             Padding="15,8">
                         <StackPanel Orientation="Horizontal">
@@ -161,7 +161,7 @@
                             Content="⚙️  Settings"
                             Style="{StaticResource SidebarButton}"
                             Height="42"
-                            Margin="0,0,0,5"/>
+                            Margin="0,0,0,5" Click="clickSettings"/>
                 </StackPanel>
 
                 <Border Grid.Row="1" 

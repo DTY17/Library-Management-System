@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF.Dto;
 using WPF.User_Control;
 
 namespace WPF
@@ -17,6 +18,10 @@ namespace WPF
         public MainWindow()
         {
             InitializeComponent();
+            if (!(UserData.Instance().Role == "Administrator"))
+            {
+                UserRole.Visibility = Visibility.Hidden;
+            }
             var home = new Home();
             LoadPanel.Child = home;
         }
@@ -51,6 +56,12 @@ namespace WPF
         {
             var record = new Reccords();
             LoadPanel.Child = record;
+        }
+
+        private void clickSettings(object sender, RoutedEventArgs e)
+        {
+            var settings = new Settings();
+            LoadPanel.Child = settings;
         }
     }
 }

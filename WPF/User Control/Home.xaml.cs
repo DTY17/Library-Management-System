@@ -52,7 +52,7 @@ namespace WPF.User_Control
 
         private int getNotReturnBookCount()
         {
-            return record.getNotReturnBookCount();
+            return record.GetNotReturnBookCount();
         }
     }
 }

@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
 using WPF.Dto;
 using WPF.Model;
 
@@ -22,6 +12,7 @@ namespace WPF.User_Control
     {
         private MemberModel memberModel;
         private int Id = 0;
+
         public Member()
         {
             memberModel = new MemberModel();
@@ -31,53 +22,22 @@ namespace WPF.User_Control
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            saveData();
-            clearData();
-            loadTable();
-        }
-
-        private void saveData()
-        {
-            Boolean isSaved = memberModel.saveData(new Dto.MemberDto
+            if (ValidateInputs())
             {
-                Name = txtName.Text.ToString(),
-                Email = txtEmail.Text.ToString(),
-                Phone = txtPhone.Text.ToString(),
-                NIC = txtNIC.Text.ToString(),
-                Birthday = Convert.ToDateTime(dpBirthday.Text),
-                Address = txtAddress.Text.ToString(),
-            });
-            if (isSaved)MessageBox.Show("Saved Successfully");
-            else MessageBox.Show("Failed to save data");
-        }
-
-        private void updateData()
-        {
-            Boolean isUpdate = memberModel.updateData(new Dto.MemberDto
-            {
-                ID = this.Id,
-                Name = txtName.Text.ToString(),
-                Email = txtEmail.Text.ToString(),
-                Phone = txtPhone.Text.ToString(),
-                NIC = txtNIC.Text.ToString(),
-                Birthday = dpBirthday.SelectedDate,
-                Address = txtAddress.Text.ToString(),
-            });
-            if (isUpdate) MessageBox.Show("Updated Successfully");
-            else MessageBox.Show("Failed to update data");
-        }
-
-        private void loadTable()
-        {
-            List<MemberDto> list = memberModel.getAllMemberList();
-            MembersTable.ItemsSource = list;
+                saveData();
+                clearData();
+                loadTable();
+            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            updateData();
-            clearData();
-            loadTable();
+            if (ValidateInputs())
+            {
+                updateData();
+                clearData();
+                loadTable();
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -93,6 +53,106 @@ namespace WPF.User_Control
             loadTable();
         }
 
+        private bool ValidateInputs()
+        {
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("Name is required.");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                MessageBox.Show("Email is required.");
+                return false;
+            }
+
+            if (!txtEmail.Text.Contains("@"))
+            {
+                MessageBox.Show("Invalid email format.");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPhone.Text))
+            {
+                MessageBox.Show("Phone number is required.");
+                return false;
+            }
+
+            if (!long.TryParse(txtPhone.Text, out _))
+            {
+                MessageBox.Show("Phone number must be numeric.");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNIC.Text))
+            {
+                MessageBox.Show("NIC is required.");
+                return false;
+            }
+
+            if (dpBirthday.SelectedDate == null)
+            {
+                MessageBox.Show("Birthday must be selected.");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtAddress.Text))
+            {
+                MessageBox.Show("Address is required.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void saveData()
+        {
+            bool isSaved = memberModel.saveData(new MemberDto
+            {
+                Name = txtName.Text,
+                Email = txtEmail.Text,
+                Phone = txtPhone.Text,
+                NIC = txtNIC.Text,
+                Birthday = dpBirthday.SelectedDate,
+                Address = txtAddress.Text
+            });
+
+            MessageBox.Show(isSaved ? "Saved Successfully" : "Failed to save data");
+        }
+
+        private void updateData()
+        {
+            bool isUpdate = memberModel.updateData(new MemberDto
+            {
+                ID = this.Id,
+                Name = txtName.Text,
+                Email = txtEmail.Text,
+                Phone = txtPhone.Text,
+                NIC = txtNIC.Text,
+                Birthday = dpBirthday.SelectedDate,
+                Address = txtAddress.Text
+            });
+
+            MessageBox.Show(isUpdate ? "Updated Successfully" : "Failed to update data");
+        }
+
+        private void deleteData()
+        {
+            bool isDeleted = memberModel.deleteData(new MemberDto
+            {
+                ID = this.Id
+            });
+
+            MessageBox.Show(isDeleted ? "Deleted Successfully" : "Failed to delete data");
+        }
+
+        private void loadTable()
+        {
+            List<MemberDto> list = memberModel.getAllMemberList();
+            MembersTable.ItemsSource = list;
+        }
+
         private void clearData()
         {
             this.Id = 0;
@@ -100,8 +160,8 @@ namespace WPF.User_Control
             txtEmail.Clear();
             txtPhone.Clear();
             txtNIC.Clear();
-            dpBirthday.Text = string.Empty;
-            txtAddress.Text = string.Empty;
+            dpBirthday.SelectedDate = null;
+            txtAddress.Clear();
 
             btnAdd.IsEnabled = true;
             btnUpdate.IsEnabled = false;
@@ -109,19 +169,8 @@ namespace WPF.User_Control
             btnClear.IsEnabled = false;
         }
 
-        private void deleteData()
-        {
-            Boolean isUpdate = memberModel.deleteData(new Dto.MemberDto
-            {
-                ID = this.Id,
-            });
-            if (isUpdate) MessageBox.Show("Deleted Successfully");
-            else MessageBox.Show("Failed to delete data");
-        }
-
         private void ClickMemberTable(object sender, MouseButtonEventArgs e)
         {
-
             btnAdd.IsEnabled = false;
             btnUpdate.IsEnabled = true;
             btnDelete.IsEnabled = true;
@@ -132,14 +181,15 @@ namespace WPF.User_Control
             if (row != null)
             {
                 var item = row.Item as MemberDto;
-                Id = Convert.ToInt32(item?.ID);
-                txtName.Text = item?.Name;
-                txtEmail.Text = item?.Email;
-                txtPhone.Text = item?.Phone;
-                txtNIC.Text = item?.NIC;
-                dpBirthday.Text = item?.Birthday.ToString();
-                txtAddress.Text = item?.Address;
+                if (item == null) return;
 
+                Id = (int)item.ID;
+                txtName.Text = item.Name;
+                txtEmail.Text = item.Email;
+                txtPhone.Text = item.Phone;
+                txtNIC.Text = item.NIC;
+                dpBirthday.SelectedDate = item.Birthday;
+                txtAddress.Text = item.Address;
             }
         }
     }

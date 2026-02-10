@@ -45,3 +45,4 @@ D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF.csproj.AssemblyReference
 D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF.csproj.Up2Date
 D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\User Control\Auth\Login.g.cs
 D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\User Control\Auth\Login.baml
+D:\Projects\DotNet\WPF\WPF\obj\Debug\net8.0-windows\WPF.sourcelink.json

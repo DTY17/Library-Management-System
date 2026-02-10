@@ -5,8 +5,461 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF.User_Control"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="610" d:DesignWidth="700" Height="610" Width="700" MinWidth="700" MinHeight="610" MaxWidth="700" MaxHeight="610">
+
+    <UserControl.Resources>
+        <!-- Modern TextBox Style -->
+        <Style x:Key="ModernTextBox" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="Border"
+                                Background="White"
+                                CornerRadius="8"
+                                BorderBrush="#E0E7FF"
+                                BorderThickness="2"
+                                Padding="12,8">
+
+                            <Grid>
+                                <!-- Actual text content -->
+                                <ScrollViewer x:Name="PART_ContentHost"/>
+
+                                <!-- Placeholder -->
+                                <TextBlock x:Name="Placeholder"
+                                           Text="{TemplateBinding Tag}"
+                                           Foreground="Gray"
+                                           Margin="5,0,0,0"
+                                           VerticalAlignment="Center"
+                                           IsHitTestVisible="False"
+                                           Opacity="0.6"
+                                           Visibility="Collapsed"/>
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <!-- Focus border color -->
+                            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#6366F1"/>
+                            </Trigger>
+
+                            <!-- Show placeholder when empty -->
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="Placeholder" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+
+                            <!-- Show placeholder when null -->
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter TargetName="Placeholder" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#1F2937"/>
+        </Style>
+
+        <!-- Modern PasswordBox Style -->
+        <Style x:Key="ModernPasswordBox" TargetType="PasswordBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border x:Name="Border"
+                                Background="White"
+                                CornerRadius="8"
+                                BorderBrush="#E0E7FF"
+                                BorderThickness="2"
+                                Padding="12,8">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#6366F1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#1F2937"/>
+        </Style>
+
+        <!-- Modern ComboBox Style -->
+        <Style x:Key="ModernComboBox" TargetType="ComboBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#1F2937"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E0E7FF"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="12,8"/>
+        </Style>
+
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="#6366F1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                Padding="20,8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#4F46E5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- DataGrid Style -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#F9FAFB"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F3F4F6"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        </Style>
+
+        <Style TargetType="DataGridCell">
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#1F2937"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="#F8FAFC">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- User Signup Form Section -->
+        <Border Grid.Row="0" 
+                Background="White" 
+                Margin="20,20,20,10" 
+                CornerRadius="16" 
+                Padding="30,20">
+            <Border.Effect>
+                <DropShadowEffect Color="#E5E7EB" 
+                                  BlurRadius="15" 
+                                  ShadowDepth="2" 
+                                  Opacity="0.5"/>
+            </Border.Effect>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <!-- Header -->
+                <TextBlock Text="User Account Management" 
+                           Grid.Row="0" 
+                           Grid.ColumnSpan="5"
+                           FontSize="20" 
+                           FontWeight="Bold" 
+                           Foreground="#1F2937"
+                           Margin="0,0,0,15"/>
+
+                <!-- Left Column Labels -->
+                <TextBlock Text="Full Name" Grid.Row="1" Grid.Column="0" 
+                           Foreground="#4B5563" FontWeight="Medium" 
+                           VerticalAlignment="Center" Margin="0,0,20,0"/>
+                <TextBlock Text="Username" Grid.Row="2" Grid.Column="0" 
+                           Foreground="#4B5563" FontWeight="Medium" 
+                           VerticalAlignment="Center" Margin="0,0,20,0"/>
+                <TextBlock Text="Password" Grid.Row="3" Grid.Column="0" 
+                           Foreground="#4B5563" FontWeight="Medium" 
+                           VerticalAlignment="Center" Margin="0,0,20,0"/>
+
+                <!-- Right Column Labels -->
+                <TextBlock Text="Email" Grid.Row="1" Grid.Column="3" 
+                           Foreground="#4B5563" FontWeight="Medium" 
+                           VerticalAlignment="Center" Margin="0,0,20,0"/>
+                <TextBlock Text="User Role" Grid.Row="2" Grid.Column="3" 
+                           Foreground="#4B5563" FontWeight="Medium" 
+                           VerticalAlignment="Center" Margin="0,0,20,0"/>
+                <TextBlock Text="Confirm Password" Grid.Row="3" Grid.Column="3" 
+                           Foreground="#4B5563" FontWeight="Medium" 
+                           VerticalAlignment="Center" Margin="0,0,20,0"/>
+
+                <!-- Left Column Inputs -->
+                <TextBox x:Name="txtFullName"
+                         Style="{StaticResource ModernTextBox}" 
+                         Tag="Enter full name"
+                         Grid.Row="1" Grid.Column="1" 
+                         VerticalAlignment="Center" 
+                         Margin="0,5"/>
+
+                <TextBox x:Name="txtUsername"
+                         Style="{StaticResource ModernTextBox}" 
+                         Tag="Enter username"
+                         Grid.Row="2" Grid.Column="1" 
+                         VerticalAlignment="Center" 
+                         Margin="0,5"/>
+
+                <PasswordBox x:Name="txtPassword"
+                             Style="{StaticResource ModernPasswordBox}"
+                             Grid.Row="3" Grid.Column="1" 
+                             VerticalAlignment="Center" 
+                             Margin="0,5"/>
+
+                <!-- Right Column Inputs -->
+                <TextBox x:Name="txtEmail"
+                         Style="{StaticResource ModernTextBox}" 
+                         Tag="Enter email address"
+                         Grid.Row="1" Grid.Column="4" 
+                         VerticalAlignment="Center" 
+                         Margin="0,5"/>
+
+                <ComboBox x:Name="cmbUserRole"
+                          Style="{StaticResource ModernComboBox}" 
+                          Grid.Row="2" Grid.Column="4" 
+                          VerticalAlignment="Center" 
+                          Margin="0,5">
+                    <ComboBoxItem Content="Administrator"/>
+                    <ComboBoxItem Content="Librarian"/>
+                    <ComboBoxItem Content="Staff"/>
+                </ComboBox>
+
+                <PasswordBox x:Name="txtConfirmPassword"
+                             Style="{StaticResource ModernPasswordBox}"
+                             Grid.Row="3" Grid.Column="4" 
+                             VerticalAlignment="Center" 
+                             Margin="0,5"/>
+
+                <!-- Action Buttons -->
+                <StackPanel Grid.Row="4" 
+                            Grid.Column="0" 
+                            Grid.ColumnSpan="5" 
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Center"
+                            Margin="0,10,0,0">
+
+                    <Button x:Name="btnCreateUser"
+                            Content="Create User Account" 
+                            Style="{StaticResource ModernButton}"
+                            Width="180" Height="38"
+                            Margin="0,0,10,0" Click="btnCreateUser_Click"/>
+
+                    <Button x:Name="btnUpdateUser"
+                            Content="Update User" 
+                            Width="140" Height="38"
+                            Margin="0,0,10,0" Click="btnUpdateUser_Click">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource ModernButton}">
+                                <Setter Property="Background" Value="#F59E0B"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#D97706"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <Button x:Name="btnDeleteUser"
+                            Content="Delete User" 
+                            Width="120" Height="38"
+                            Margin="0,0,10,0" Click="btnDeleteUser_Click">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource ModernButton}">
+                                <Setter Property="Background" Value="#EF4444"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#DC2626"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <Button x:Name="btnClearForm"
+                            Content="Clear" 
+                            Width="100" Height="38" Click="btnClearForm_Click">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource ModernButton}">
+                                <Setter Property="Background" Value="#6B7280"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#4B5563"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Search Section -->
+        <Border Grid.Row="1" 
+                Background="White" 
+                Margin="20,10,20,10" 
+                CornerRadius="16" 
+                Padding="20">
+            <Border.Effect>
+                <DropShadowEffect Color="#E5E7EB" 
+                                  BlurRadius="15" 
+                                  ShadowDepth="2" 
+                                  Opacity="0.5"/>
+            </Border.Effect>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="🔍" 
+                           Grid.Column="0"
+                           FontSize="20" 
+                           VerticalAlignment="Center"
+                           Margin="0,0,10,0"/>
+
+                <TextBox x:Name="txtSearch"
+                         Grid.Column="1"
+                         Style="{StaticResource ModernTextBox}" 
+                         Tag="Search users by name, username, or email"
+                         VerticalAlignment="Center"
+                         Margin="0,0,10,0"/>
+
+                <Button x:Name="btnSearch"
+                        Grid.Column="2"
+                        Content="Search" 
+                        Width="100" Height="38"
+                        Margin="0,0,10,0" Click="btnSearch_Click">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource ModernButton}">
+                            <Setter Property="Background" Value="#10B981"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#059669"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button x:Name="btnShowAll"
+                        Grid.Column="3"
+                        Content="Show All" 
+                        Width="100" Height="38" Click="btnShowAll_Click">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource ModernButton}">
+                            <Setter Property="Background" Value="#6B7280"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#4B5563"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- DataGrid Section -->
+        <Border Grid.Row="2" 
+                Background="White" 
+                Margin="20,10,20,20" 
+                CornerRadius="16" 
+                Padding="0">
+            <Border.Effect>
+                <DropShadowEffect Color="#E5E7EB" 
+                                  BlurRadius="15" 
+                                  ShadowDepth="2" 
+                                  Opacity="0.5"/>
+            </Border.Effect>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Section Header -->
+                <Border Grid.Row="0" 
+                        BorderBrush="#E5E7EB" 
+                        BorderThickness="0,0,0,1"
+                        Padding="20,15">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="User Accounts" 
+                                   FontSize="18" 
+                                   FontWeight="SemiBold"
+                                   Foreground="#1F2937"
+                                   VerticalAlignment="Center"/>
+                        <Border Background="#EEF2FF"
+                                CornerRadius="6"
+                                Padding="8,4"
+                                Margin="15,0,0,0">
+                            <TextBlock x:Name="txtUserCount"
+                                       Text="0 users" 
+                                       FontSize="12" 
+                                       FontWeight="Medium"
+                                       Foreground="#6366F1"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- DataGrid -->
+                <DataGrid x:Name="UsersTable"
+                          Grid.Row="1"
+                          AutoGenerateColumns="False"
+                          HeadersVisibility="Column"
+                          CanUserAddRows="False"
+                          Margin="1,0,1,1"
+                          SelectionChanged="UsersTable_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                        <DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" Width="*"/>
+                        <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="*"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                        <DataGridTextColumn Header="Role" Binding="{Binding Role}" Width="120"/>
+                        <DataGridTextColumn Header="Created Date" Binding="{Binding CreatedDate, StringFormat=\{0:dd/MM/yyyy\}}" Width="110"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
     </Grid>
+
 </UserControl>
